@@ -2,6 +2,8 @@ FROM amd64/python:3.6.8-alpine
 
 LABEL maintainer="Roxedus"
 
+ENV args=-h
+
 RUN \
     echo "**** install build packages ****" && \
     python3 -m pip install requests && \
@@ -11,4 +13,4 @@ RUN \
 
 VOLUME /config
 
-CMD touch /config/config.py && ln -sf /config/config.py /app/config.py && python3 /app/rcm.py
+CMD touch /config/config.py && ln -sf /config/config.py /app/config.py && python3 /app/rcm.py $args
