@@ -9,7 +9,7 @@ RUN \
     python3 -m pip install requests && \
     apk add --no-cache git && \
     echo "**** Clonig project ****" && \
-    git clone https://github.com/RhinoRhys/radarr-collections /app
+    git clone -b develop https://github.com/RhinoRhys/radarr-collections /app
 
 COPY /folders.sh /run/folders.sh
 
