@@ -12,7 +12,7 @@ RUN \
     git clone -b develop https://github.com/RhinoRhys/radarr-collections /app
 
 COPY /folders.sh /run/folders.sh
-
-CMD sh /run/folders.sh && python /app/rcm.py $args
+WORKDIR /config
+CMD sh /run/folders.sh && python /app/rcm.py /config $args
 
 VOLUME /config
