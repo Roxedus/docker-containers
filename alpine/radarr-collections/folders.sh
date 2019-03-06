@@ -1,14 +1,31 @@
 #!/usr/bin/with-contenv bash
-if [[ ! -d /config/config.py ]]; then
-    echo "First run"
-    touch /config/config.py
+if [[ ! -f /config/config.py ]]; then
+    echo "First run, cloning config.py into /config"
+    cp /app/config.default.py /config/config.py
     ln -sf /config/config.py /app/config.py
-    mkdir /config/logs
-    mkdir /config/output
+else
+    ln -sf /config/config.py /app/config.py
 fi
-ln -sf /config/logs /app/logs
-ln -sf /config/output /app/output
+if [[ ! -d /config/output ]]; then
+    echo "Output directory not existing, creating"
+    mkdir /config/output
+    ln -sf /config/output /app
+else
+    ln -sf /config/output /app
+fi
+if [[ ! -d /config/logs ]]; then
+    echo "Logs directory not existing, creating"
+    mkdir /config/logs
+    ln -sf /config/logs /app
+else
+    ln -sf /config/logs /app
+fi
 
+chown -R root:root \
+    /config/logs \
+    /config/output \
+    /config/config.py
 chmod -R 777 \
-	/config/logs \
-    /config/output
+    /config/logs \
+    /config/output \
+    /config/config.py
