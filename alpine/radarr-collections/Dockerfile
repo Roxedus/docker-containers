@@ -11,6 +11,8 @@ RUN \
     echo "**** Clonig project ****" && \
     git clone https://github.com/RhinoRhys/radarr-collections /app
 
-VOLUME /config
+COPY folders.sh /run/folders.sh
 
-CMD touch /config/config.py && ln -sf /config/config.py /app/config.py && python3 /app/rcm.py $args
+CMD sh /run/folders.sh && ls /app && python3 /app/rcm.py $args
+
+VOLUME /config
