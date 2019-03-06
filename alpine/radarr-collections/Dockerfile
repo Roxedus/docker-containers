@@ -1,4 +1,4 @@
-FROM amd64/python:3.6.8-alpine
+FROM amd64/python:2.7.16-alpine
 
 LABEL maintainer="Roxedus"
 
@@ -6,13 +6,13 @@ ENV args=-h
 
 RUN \
     echo "**** install build packages ****" && \
-    python3 -m pip install requests && \
+    python2 -m pip install requests configparser && \
     apk add --no-cache git && \
     echo "**** Clonig project ****" && \
-    git clone https://github.com/RhinoRhys/radarr-collections /app
+    git clone -b master https://github.com/RhinoRhys/radarr-collections /app
 
 COPY /folders.sh /run/folders.sh
 
-CMD sh /run/folders.sh && python3 /app/rcm.py $args
+CMD sh /run/folders.sh && python /app/rcm.py $args
 
 VOLUME /config
