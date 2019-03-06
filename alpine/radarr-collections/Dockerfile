@@ -3,6 +3,7 @@ FROM amd64/python:2.7.16-alpine
 LABEL maintainer="Roxedus"
 
 ENV args=-h
+
 RUN \
     echo "**** install build packages ****" && \
     python2 -m pip install requests configparser && \
