@@ -8,3 +8,7 @@ if [[ ! -d /config/config.py ]]; then
 fi
 ln -sf /config/logs /app/logs
 ln -sf /config/output /app/output
+
+chmod -R 777 \
+	/config/logs \
+    /config/output
