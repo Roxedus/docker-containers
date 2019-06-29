@@ -1,6 +1,7 @@
 FROM amd64/python:2.7.16-alpine
 
 LABEL maintainer="Roxedus"
+LABEL maintainer_contact="me@roxedus.dev"
 
 ENV args=-h
 
